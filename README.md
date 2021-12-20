@@ -19,6 +19,7 @@ Wemos pin conections:
   - 3v3
   - GND
   - Data: D1
+- more will be added soon!
 
 
 ---> im always open for Tips!
