@@ -17,20 +17,24 @@ void wifiSetup();
 char ReageerOpBericht();
 void controllLCD(float t, int h);
 
-String json_data(float temp, int humi, String ID) {
-  const char* data = "{\"temp\":\"furniture\",\"humi\":status_code}"; // Create JSON skeleton   
-  StaticJsonDocument<96> json_object;     // Create JSON object
-  json_object["ID"] = ID;        // Modify value in JSON object based on key name
-  json_object["temp"] = temp;        // Modify value in JSON object based on key name
-  json_object["humi"] = humi;      // Modify value in JSOB object based on key name
+String json_data(float temp, int humi, String ID) 
+{
+  const char* data = "{\"temp\":\"furniture\",\"humi\":status_code}";       // Create JSON skeleton   
+  StaticJsonDocument<96> json_object;                                       // Create JSON object
+  
+    json_object["ID"] = ID;                                                 // Modify value in JSON object based on key name
+    json_object["temp"] = temp;                                             // Modify value in JSON object based on key name
+    json_object["humi"] = humi;                                             // Modify value in JSOB object based on key name
+    
   char send_data[100];              
-  serializeJson(json_object, send_data); // Convert JSON Object to a character string. 
+  
+  serializeJson(json_object, send_data);                                    // Convert JSON Object to a character string. 
 
   return send_data;
 }
 
 int i = 0;
-int loper = 0;
+int loper = 0;  
 char buffer[100];
 
 char ch;
@@ -48,7 +52,7 @@ float t = 0;
 int h = 0;
 
 ESP8266WiFiMulti WiFiMulti;
-// Set the LCD address to 0x27 for a 16 chars and 2 line display
+
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
 void setup() {
@@ -58,8 +62,8 @@ void setup() {
   Serial.print("connecting to ");
   Serial.print(host);         
   Serial.print(':');
-  Serial.println(port);       // de port van de pi
-  //Serial.print(unique_id); // is het wemos device in gebruik
+  Serial.println(port);      
+  //Serial.print(unique_id);                  // is het wemos device in gebruik
   // Use WiFiClient class to create TCP connections
 
   //start up LCD

@@ -2,7 +2,6 @@
 * * this is the working code
 * * last update: Frits Duindam
 */
-
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/socket.h>
@@ -121,7 +120,6 @@ while(listen(server_fd, 3) >= 0){
 				}
 				else if(strcmp(IDname, "LCDWemos")== 0)
 				{
-
 					printf("ID		: %s\n", IDname); // print ID
 					printf("sending Data....\n");
 					send(new_socket , copyBuffer , sizeof(copyBuffer)+5 , 0);
