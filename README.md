@@ -7,3 +7,8 @@ Hardware used:
 - DHT22 Temperature and Humidity sensor
 - 2004A 20x4 LCD
 - I2C for the LCD
+
+
+---> im always open for Tips!
+
+Frits
