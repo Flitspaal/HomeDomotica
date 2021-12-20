@@ -9,6 +9,18 @@ Hardware used:
 - I2C for the LCD
 
 
+Wemos pin conections:
+- LCD Wemos:
+  - 5v
+  - GND
+  - SCL: D1 (I2C)
+  - SDA: D2 (I2C)
+- DHT22 Wemos
+  - 3v3
+  - GND
+  - Data: D1
+
+
 ---> im always open for Tips!
 
 Frits
