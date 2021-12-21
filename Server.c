@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <netinet/in.h>  
 #include <string.h>
-#include "json-c/json.h"
+#include "json-c/json.h" // sudo apt install libjson-c-dev // to get lib on your pi
 
 #define PORT 3000 
 
