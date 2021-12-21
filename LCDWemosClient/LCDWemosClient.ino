@@ -23,8 +23,6 @@ String json_data(float temp, int humi, String ID)
   StaticJsonDocument<96> json_object;                                       // Create JSON object
   
     json_object["ID"] = ID;                                                 // Modify value in JSON object based on key name
-    json_object["temp"] = temp;                                             // Modify value in JSON object based on key name
-    json_object["humi"] = humi;                                             // Modify value in JSOB object based on key name
     
   char send_data[100];              
   
@@ -44,16 +42,16 @@ const String IDname = "LCDWemos";
 const char* ssid     = STASSID;
 const char* password = STAPSK;
 
-const char* host = "192.168.5.1";
-const uint16_t port = 3000;
+const char* host = "192.168.5.1"; // ip of the host / network adress
+const uint16_t port = 3000;       // the open port
 
-// geeft geen temperatuur mee dus 0
+// for saving the temperature and humidity
 float t = 0;
 int h = 0;
 
 ESP8266WiFiMulti WiFiMulti;
 
-LiquidCrystal_I2C lcd(0x27, 20, 4);
+LiquidCrystal_I2C lcd(0x27, 20, 4); // ic2 address | 20 x 4 lcd
 
 void setup() {
   
@@ -64,8 +62,7 @@ void setup() {
   Serial.print(':');
   Serial.println(port);      
   //Serial.print(unique_id);                  // is het wemos device in gebruik
-  // Use WiFiClient class to create TCP connections
-
+  
   //start up LCD
   lcd.begin();  
   lcd.backlight();
@@ -82,14 +79,14 @@ void loop() {
 
   Serial.print("sending data... ");
 
-  if (!client.connect(host, port)) {
+  if (!client.connect(host, port)) {      // check if connected
     Serial.println("connection failed");
     Serial.println("wait 5 sec...");
     delay(5000);
     return;
   }
   
-  client.print(json_data(0 ,0 ,IDname));
+  client.print(json_data(IDname));  // send data to AP || only a ID needed because its only requesting data
   delay(100);
   unsigned long timeout = millis();
   while (client.available() == 0) // contoleerd connectie
@@ -157,7 +154,7 @@ void controllLCD(float t, int h)
   delay(200);
 }
 
-void wifiSetup()
+void wifiSetup() // connecting to the AP
 {
   // We start by connecting to a WiFi network
   WiFi.mode(WIFI_STA);
