@@ -17,8 +17,7 @@ void wifiSetup();
 char ReageerOpBericht();
 void controllLCD(float t, int h);
 
-String json_data(float temp, int humi, String ID) 
-{
+String json_data(float temp, int humi, String ID) {
   const char* data = "{\"temp\":\"furniture\",\"humi\":status_code}";       // Create JSON skeleton   
   StaticJsonDocument<96> json_object;                                       // Create JSON object
   
@@ -92,8 +91,8 @@ void loop() {
   client.print(json_data(0 ,0 ,IDname));
   delay(100);
   unsigned long timeout = millis();
-  while (client.available() == 0) // contoleerd connectie
-  {
+  while (client.available() == 0)  {// contoleerd connectie
+ 
       if (millis() - timeout > 20000) {
         Serial.println(">>> Client Timeout !");
         client.stop();
@@ -103,8 +102,8 @@ void loop() {
       }
     }
   
-  while (client.available()) // leest het ingekomen bericht
-  {
+  while (client.available()) {// leest het ingekomen bericht
+  
       ch = static_cast<char>(client.read());
       Serial.print(ch); // om te zien wat de waarde is
         if(loper < 42)
@@ -120,8 +119,8 @@ void loop() {
       //Serial.print(buffer); // voor debugging
       DynamicJsonDocument doc(1000);
       DeserializationError error = deserializeJson(doc, buffer);
-        if(error)
-        {
+        if(error) {
+        
           Serial.println("  Invalid Json Object!  ");
        
         }
@@ -140,8 +139,7 @@ void loop() {
 //* functions ---------------------------------------------------------------------------------------------------
 
 
-void controllLCD(float t, int h)
-{
+void controllLCD(float t, int h) {
   lcd.clear();// clear previous values from screen
   lcd.print("Temperature");
   lcd.setCursor(12,0);
@@ -157,8 +155,7 @@ void controllLCD(float t, int h)
   delay(200);
 }
 
-void wifiSetup()
-{
+void wifiSetup() {
   // We start by connecting to a WiFi network
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid, password);
