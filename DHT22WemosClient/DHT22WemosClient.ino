@@ -76,9 +76,8 @@ void loop() {
   client.print(json_data(t ,h ,IDname));  // send temp and humidity data along with a IDname
   delay(100);
   unsigned long timeout = millis();
-  while (client.available() == 0)         // contoleerd connectie
-  {
-      if (millis() - timeout > 20000) {
+  while (client.available() == 0) {         // contoleerd connectie
+        if (millis() - timeout > 20000) {
         Serial.println(">>> Client Timeout !");
         client.stop();
         delay(10000);                     // wacht 10 sec en probeer het overnieuw
@@ -87,8 +86,7 @@ void loop() {
       }
     }
   
-  while (client.available())              // leest het ingekomen bericht
-  {
+  while (client.available()){            // leest het ingekomen bericht
       char ch = static_cast<char>(client.read());
       //Serial.print(ch);                 // om te zien wat de waarde is
       //delay(100);
@@ -108,8 +106,8 @@ void loop() {
 
 //* functions ---------------------------------------------------------------------------------------------------
 
-float readTemp() // reading the Temperature sensor (DHT22)
-{
+float readTemp() {// reading the Temperature sensor (DHT22)
+
   float t = dht.readTemperature();
   if(isnan(t))
   {
@@ -119,8 +117,8 @@ float readTemp() // reading the Temperature sensor (DHT22)
   return t;
 }
 
-int readHumi() // reading the Humidity sensor (DHT22)
-{
+int readHumi() {// reading the Humidity sensor (DHT22)
+
   int h = dht.readHumidity();
   if(isnan(h))
   {
@@ -130,8 +128,8 @@ int readHumi() // reading the Humidity sensor (DHT22)
   return h;
 }
 
-void wifiSetup() // connecting to the AP
-{
+void wifiSetup() {// connecting to the AP
+
   
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid, password);
